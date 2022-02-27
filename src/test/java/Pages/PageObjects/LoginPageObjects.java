@@ -16,4 +16,11 @@ public class LoginPageObjects {
 
     @FindBy(id = "menu_pim_viewMyDetails")
     public WebElement viewMyDetails;
+
+    @FindBy(xpath = "//a[text()='Forgot your password?']")
+    public WebElement forgotPassword;
+
+    @FindBy(id = "btnSearchValues")
+    public WebElement resetPasswordBtn;
+
 }
