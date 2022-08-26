@@ -10,13 +10,13 @@ public class LoginTest extends BaseClass {
     }
 
     @Test
-    public void Login(){
+    public void TC_01_Login(){
         getLoginPage().validLogin();
 
     }
 
     @Test
-    public void InValidLogin(){
+    public void TC_02_InValidLogin(){
         getLoginPage().inValidLogin();
 
     }

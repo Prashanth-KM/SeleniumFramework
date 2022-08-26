@@ -5,6 +5,7 @@ import Pages.PageObjects.LoginPageObjects;
 import Reports.ExtentLogger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Reporter;
 import utils.Constants;
 import utils.DriverManager;
 
@@ -23,24 +24,20 @@ public class LoginPageAction implements Constants {
     }
 
     public void validLogin(){
-        try{
-            generic.sendKeys(loginPageObjects.userName,userName,"Username");
-            generic.sendKeys(loginPageObjects.password,password,"Password");
-            generic.waitAndClick(loginPageObjects.loginBtn,"Login Button");
+        generic.sendKeys(loginPageObjects.userName,userName,"Username");
+        Reporter.log("Username is entered");
+        generic.sendKeys(loginPageObjects.password,password,"Password");
+        Reporter.log("password is entered");
+        generic.waitAndClick(loginPageObjects.loginBtn,"Login Button");
+        Reporter.log("Login button is clicked");
 
-        }catch (Exception e){
-            e.printStackTrace();
-        }
     }
 
     public void inValidLogin(){
-        try{
-            generic.sendKeys(loginPageObjects.userName,userName,"Username");
-            generic.sendKeys(loginPageObjects.password,invalidPassword,"Password");
-            generic.waitAndClick(loginPageObjects.loginBtn,"Login Button");
-            generic.isElementPresentAssertTrue(loginPageObjects.viewMyDetails);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+        generic.sendKeys(loginPageObjects.userName,userName,"Username");
+        generic.sendKeys(loginPageObjects.password,invalidPassword,"Password");
+        generic.waitAndClick(loginPageObjects.loginBtn,"Login Button");
+        generic.isElementPresentAssertTrue(loginPageObjects.viewMyDetails);
+
     }
 }

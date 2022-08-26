@@ -15,7 +15,7 @@ public class CommonFunctions {
 
     public  void sendKeys(WebElement element, String data,String elementName)  {
         try {
-            WebDriverWait wait = new WebDriverWait(driver, 30);
+            WebDriverWait wait = new WebDriverWait(driver, 15);
             wait.until(ExpectedConditions.visibilityOf(element));
             element.clear();
             element.sendKeys(data);

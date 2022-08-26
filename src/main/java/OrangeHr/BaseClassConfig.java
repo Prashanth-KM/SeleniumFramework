@@ -2,15 +2,13 @@ package OrangeHr;
 
 import Reports.ExtentTestManager;
 import com.aventstack.extentreports.Status;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.ITestResult;
 import utils.DriverManager;
 
-
-import java.io.File;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
@@ -26,16 +24,11 @@ public class BaseClassConfig {
 
 
     public  void launchDriver(){
-        try {
-            String path= System.getProperty("user.dir")+ File.separator+"src"+File.separator+"main"+File.separator+"resources"+File.separator;
-            System.setProperty("webdriver.chrome.driver",path+ "chromedriver");
-            driver=new ChromeDriver();
+            driver=  WebDriverManager.chromedriver().create();
             driver.manage().window().maximize();
             driver.get("https://opensource-demo.orangehrmlive.com/");
             DriverManager.setDriver(driver);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+
     }
 
     public void testResultCapture(ITestResult result) throws NullPointerException {
@@ -51,7 +44,7 @@ public class BaseClassConfig {
         /**
          * Failure Block
          */
-        try {
+
 
             if (result.getStatus() == ITestResult.FAILURE) {
                 if (result.getThrowable().getMessage().contains("Skipped By retry")) {
@@ -73,9 +66,6 @@ public class BaseClassConfig {
                     ExtentTestManager.getExtentTest().addScreenCaptureFromBase64String(getBase64());
                 }
             }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
 
     }
 
