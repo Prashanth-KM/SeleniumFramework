@@ -6,6 +6,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import java.time.Duration;
+
 public class CommonFunctions {
     public WebDriver driver;
 
@@ -15,7 +17,7 @@ public class CommonFunctions {
 
     public  void sendKeys(WebElement element, String data,String elementName)  {
         try {
-            WebDriverWait wait = new WebDriverWait(driver, 15);
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
             wait.until(ExpectedConditions.visibilityOf(element));
             element.clear();
             element.sendKeys(data);
@@ -29,7 +31,7 @@ public class CommonFunctions {
 
     public void waitTillTheElementIsClickable(WebElement element) {
 
-        WebDriverWait wait = new WebDriverWait(driver, 5);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
